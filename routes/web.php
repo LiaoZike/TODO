@@ -19,8 +19,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class,'index'])->name('home.index');
+Route::get('tasks/create', [HomeController::class, 'create'])->name("tasks.create");
+Route::post('tasks', [HomeController::class, 'store'])->name("tasks.store");
 
 Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('login', [AdminHomeController::class, 'login'])->name("login");
+    Route::get('logout', [AdminHomeController::class, 'logout'])->name("logout");
+    Route::get('verification', [AdminHomeController::class,'verification'])->name("verification");
+
     Route::get('/', [AdminHomeController::class, 'index'])->name("home.index");
     Route::get('tasks', [AdminTasksController::class, 'index'])->name("tasks.index");
     Route::get('tasks/create', [AdminTasksController::class, 'create'])->name("tasks.create");
