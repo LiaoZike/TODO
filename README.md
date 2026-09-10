@@ -161,25 +161,9 @@ php artisan serve
 http://127.0.0.1:8000
 ```
 
-## Security
-
-專案已透過 `.gitignore` 排除 `.env`，實際的資料庫密碼、API Key 或其他敏感資訊不應提交至 Git Repository。
-
-請只提交：
-
-```text
-.env.example
-```
-
-不要提交：
-
-```text
-.env
-```
-
 ## Purpose
 
-本專案主要作為 Laravel 基礎 CRUD、Route、Controller、Model、Blade View 與資料庫操作的練習專案。
+本專案主要作為 Laravel 基礎 CRUD、Route、Controller、Model、Blade View 與資料庫操作的專案。
 
 ---
 
