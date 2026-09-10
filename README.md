@@ -1,66 +1,186 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# TODO
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+一個使用 **Laravel 10** 開發的簡易 TODO / 任務管理網站，提供前台任務瀏覽與新增功能，以及後台任務管理、編輯、刪除與條件搜尋功能。
 
-## About Laravel
+## Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- 查看 TODO / 任務清單
+- 新增 TODO
+- 後台管理介面
+- 編輯既有任務
+- 刪除任務
+- 支援依以下欄位搜尋任務：
+  - Name
+  - Title
+  - Content
+  - Note
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Tech Stack
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Backend:** PHP 8.1+, Laravel 10
+- **Frontend:** Blade, HTML, CSS, JavaScript
+- **Build Tool:** Vite
+- **Database:** MySQL
+- **HTTP Client:** Axios
 
-## Learning Laravel
+## Project Structure
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+```text
+TODO/
+├── app/
+│   ├── Http/Controllers/
+│   │   ├── HomeController.php
+│   │   ├── AdminHomeController.php
+│   │   ├── AdminTasksController.php
+│   │   └── AdminSearchTasksController.php
+│   └── Models/
+│       └── Task.php
+├── database/
+│   └── migrations/
+├── public/
+├── resources/
+│   └── views/
+├── routes/
+│   └── web.php
+├── .env.example
+├── composer.json
+└── package.json
+```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Task Data
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+每筆 TODO 主要包含以下欄位：
 
-## Laravel Sponsors
+| Field | Description |
+| --- | --- |
+| `id` | 任務 ID |
+| `name` | 建立者 / 名稱 |
+| `title` | 任務標題 |
+| `content` | 任務內容 |
+| `note` | 備註 |
+| `created_at` | 建立時間 |
+| `updated_at` | 更新時間 |
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## Routes
 
-### Premium Partners
+主要前台路由：
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+```text
+GET   /                  查看任務清單
+GET   /tasks/create      新增任務頁面
+POST  /tasks             建立任務
+```
 
-## Contributing
+主要後台路由：
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```text
+GET     /admin
+GET     /admin/tasks
+GET     /admin/tasks/create
+POST    /admin/tasks
+GET     /admin/tasks/{id}/edit
+PATCH   /admin/tasks/{id}
+DELETE  /admin/tasks/{id}
 
-## Code of Conduct
+GET     /admin/tasks/search
+POST    /admin/tasks/search
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Installation
 
-## Security Vulnerabilities
+### 1. Clone Repository
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+git clone https://github.com/LiaoZike/TODO.git
+cd TODO
+```
 
-## License
+### 2. Install PHP Dependencies
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+composer install
+```
+
+### 3. Create Environment File
+
+Linux / macOS：
+
+```bash
+cp .env.example .env
+```
+
+Windows：
+
+```powershell
+copy .env.example .env
+```
+
+接著產生 Laravel application key：
+
+```bash
+php artisan key:generate
+```
+
+### 4. Configure Database
+
+修改 `.env` 中的資料庫設定：
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=todo
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+請依自己的 MySQL 環境調整帳號與密碼。
+
+### 5. Run Migration
+
+```bash
+php artisan migrate
+```
+
+### 6. Install Frontend Dependencies
+
+```bash
+npm install
+npm run dev
+```
+
+### 7. Start Laravel
+
+```bash
+php artisan serve
+```
+
+預設可從以下位置開啟：
+
+```text
+http://127.0.0.1:8000
+```
+
+## Security
+
+專案已透過 `.gitignore` 排除 `.env`，實際的資料庫密碼、API Key 或其他敏感資訊不應提交至 Git Repository。
+
+請只提交：
+
+```text
+.env.example
+```
+
+不要提交：
+
+```text
+.env
+```
+
+## Purpose
+
+本專案主要作為 Laravel 基礎 CRUD、Route、Controller、Model、Blade View 與資料庫操作的練習專案。
+
+---
+
+Developed by [LiaoZike](https://github.com/LiaoZike)
